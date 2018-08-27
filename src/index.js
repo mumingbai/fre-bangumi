@@ -8,7 +8,8 @@ class App extends Fre.Component {
     this.state = {
       baseUrl: 'https://www.chinko.cc',
       url: this.GetQueryString('url'),
-      isShow: Cookies.get('uqq') ? 'display:block' : 'display:none'
+      isLogin: Cookies.get('uqq') ? 'display:block' : 'display:none',
+      isNoLogin: Cookies.get('uqq') ? 'display:none' : 'display:block'
     }
   }
 
@@ -18,6 +19,7 @@ class App extends Fre.Component {
     if (r != null) return unescape(r[2])
     return null
   }
+
 
   render() {
     return (
@@ -31,14 +33,14 @@ class App extends Fre.Component {
           </div>
         </header>
         <div className="player" >
-          <div className="iframe" style={this.state.isShow}>
+          <div className="iframe" style={this.state.isLogin}>
             <iframe src={"http://yun.baiyug.cn/vip/index.php?url=" + this.state.url}
                     frameBorder="0" height="450px" width="700px"></iframe>
           </div>
-          <div style={!this.state.isShow} className="no-login">
+          <div style={this.state.isNoLogin} className="no-login">
             <ul>
-              <a href="https://www.chinko.cc/login">登陆</a>
-              <a href="https://www.chinko.cc/register">注册</a>
+              <a href="https://admin.chinko.cc/login">登陆</a>
+              <a href="https://admin.chinko.cc/register">注册</a>
             </ul>
           </div>
         </div>
