@@ -39,8 +39,8 @@ class App extends Fre.Component {
           </div>
           <div style={this.state.isNoLogin} className="no-login">
             <ul>
-              <a href="https://admin.chinko.cc/login">登陆</a>
-              <a href="https://admin.chinko.cc/register">注册</a>
+              <a href="http://admin.chinko.cc/login">登陆</a>
+              <a href="http://admin.chinko.cc/register">注册</a>
             </ul>
           </div>
         </div>
