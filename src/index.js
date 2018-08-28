@@ -8,8 +8,8 @@ class App extends Fre.Component {
     this.state = {
       baseUrl: 'https://www.chinko.cc',
       url: this.GetQueryString('url'),
-      isLogin: Cookies.get('uqq') ? 'display:block' : 'display:none',
-      isNoLogin: Cookies.get('uqq') ? 'display:none' : 'display:block'
+      display: "display:none;",
+      switchText: '开灯'
     }
   }
 
@@ -18,6 +18,11 @@ class App extends Fre.Component {
     let r = window.location.search.substr(1).match(reg)
     if (r != null) return unescape(r[2])
     return null
+  }
+
+  changeNight() {
+    this.state.display = 'display:block;'
+    this.state.switchText = '开灯' ? this.state.switchText = '关灯' : this.state.switchText = '开灯'
   }
 
 
@@ -32,12 +37,12 @@ class App extends Fre.Component {
             </a>
           </div>
         </header>
-        <div className="player" >
-          <div className="iframe" style={this.state.isLogin}>
-            <iframe src={"http://yun.baiyug.cn/vip/index.php?url=" + this.state.url}
-                    frameBorder="0" height="450px" width="700px"></iframe>
+        <div className="player">
+          <div className="iframe">
+            <iframe src={"http://jx.du2.cc/?url=" + this.state.url}
+                    frameBorder="0" height="100%" width="100%"></iframe>
           </div>
-          <div style={this.state.isNoLogin} className="no-login">
+          <div style="display:none" className="no-login">
             <ul>
               <a href="http://admin.chinko.cc/login">登陆</a>
               <a href="http://admin.chinko.cc/register">注册</a>
@@ -51,6 +56,9 @@ class App extends Fre.Component {
             Powered by <span className="title">Fre.js</span>
           </p>
         </footer>
+
+        <div className="night" style={this.state.display}>
+        </div>
       </div>
     )
   }
